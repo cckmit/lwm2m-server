@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: iot-lwm2m-download
+  cloud:
+    nacos:
+      config:
+        server-addr: ${nacosHost}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        namespace: prod
+        shared-dataids: californium.yml,common.yml
+        refreshable-dataids: californium.yml,common.yml

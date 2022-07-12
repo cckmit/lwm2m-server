@@ -1,0 +1,84 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>iot-lwm2m-core</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <groupId>com.abupdate.iot.lwm2m</groupId>
+
+    <modelVersion>4.0.0</modelVersion>
+    <dependencies>
+        <!-- logback -->
+        <dependency>
+            <artifactId>slf4j-api</artifactId>
+            <groupId>org.slf4j</groupId>
+            <version>${slf4j-api}</version>
+        </dependency>
+        <dependency>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.slf4j</groupId>
+            <version>${slf4j-api}</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-core</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>${logback-core}</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>${logback-core}</version>
+        </dependency>
+
+        <!-- Google Gson -->
+        <dependency>
+            <artifactId>gson</artifactId>
+            <groupId>com.google.code.gson</groupId>
+            <version>${google.code.gson}</version>
+        </dependency>
+
+        <!-- californium -->
+        <dependency>
+            <artifactId>californium-core</artifactId>
+            <groupId>org.eclipse.californium</groupId>
+            <version>${californium-core}</version>
+        </dependency>
+        <dependency>
+            <artifactId>scandium</artifactId>
+            <groupId>org.eclipse.californium</groupId>
+            <version>${californium-core}</version>
+        </dependency>
+    </dependencies>
+
+
+
+    <properties>
+        <californium-core>2.0.0-M11</californium-core>
+        <logback-core>1.2.3</logback-core>
+        <slf4j-api>1.7.25</slf4j-api>
+        <google.code.gson>2.2.4</google.code.gson>
+    </properties>
+
+
+    <repositories>
+        <repository>
+            <id>spring-milestone</id>
+            <url>http://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

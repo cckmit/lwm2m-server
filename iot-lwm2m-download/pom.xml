@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.abupdate.iot</groupId>
+    <artifactId>iot-lwm2m-download</artifactId>
+    <name>iot-lwm2m-download</name>
+    <description>download</description>
+
+
+    <version>3.8.2.0-20210729-RELEASE</version>
+
+
+    <properties>
+        <californium-core>2.0.0-M11</californium-core>
+        <californium-core-connector>2.0.0-M11</californium-core-connector>
+        <californium-core-scandium>2.0.0-M11</californium-core-scandium>
+        <adminui-version>2.1.0</adminui-version>
+        <nacos-version>2.1.1.RELEASE</nacos-version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>${nacos-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>${nacos-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>${adminui-version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
+
+        <!-- logback -->
+        <dependency>
+            <artifactId>slf4j-api</artifactId>
+            <groupId>org.slf4j</groupId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <groupId>org.slf4j</groupId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-core</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <version>1.2.3</version>
+        </dependency>
+
+
+        <dependency>
+            <artifactId>californium-core</artifactId>
+            <groupId>org.eclipse.californium</groupId>
+            <version>${californium-core}</version>
+        </dependency>
+        <dependency>
+            <artifactId>element-connector</artifactId>
+            <groupId>org.eclipse.californium</groupId>
+            <version>${californium-core-connector}</version>
+        </dependency>
+        <dependency>
+            <artifactId>scandium</artifactId>
+            <groupId>org.eclipse.californium</groupId>
+            <version>${californium-core-scandium}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+        <dependency>
+            <artifactId>commons-cli</artifactId>
+            <groupId>commons-cli</groupId>
+            <version>1.3.1</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>cn.hutool</groupId>-->
+<!--            <artifactId>hutool-core</artifactId>-->
+<!--            <version>5.7.4</version>-->
+<!--        </dependency>-->
+
+    </dependencies>
+
+
+
+</project>

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: iot-lwm2m-download
+  cloud:
+    nacos:
+      config:
+        server-addr: 129.211.122.48:8848,212.64.110.92:8848,115.159.97.250:8848
+        group: local
+        file-extension: yaml
+        namespace: public
+        shared-dataids: common.yml,mysql.yml
+        refreshable-dataids: common.yml,mysql.yml

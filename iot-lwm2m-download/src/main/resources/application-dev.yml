@@ -1,0 +1,12 @@
+#spring:
+#  boot:
+#    admin:
+#      client:
+#        enabled: true
+#        username: admin
+#        password: abup@666
+#        url: http://212.64.110.92:8380
+#        instance:
+#          prefer-ip: true
+#  application:
+#    name: iot-lwm2m-download

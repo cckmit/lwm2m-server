@@ -1,0 +1,6 @@
+spring:
+
+
+url:
+  downloadUurl : coap://127.0.0.1/rd/downloads
+  redisUrl : redis://:123@127.0.0.1:6379
