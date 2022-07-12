@@ -25,6 +25,10 @@ import org.eclipse.lwm2m.core.response.ResponseCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 异步请求观察类
+ * @param <T>
+ */
 public abstract class AsyncRequestObserver<T extends LwM2mResponse> extends AbstractRequestObserver<T> {
     private static final Logger LOG = LoggerFactory.getLogger(AsyncRequestObserver.class);
 

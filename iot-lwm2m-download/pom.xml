@@ -19,9 +19,9 @@
 
 
     <properties>
-        <californium-core>2.0.0-M11</californium-core>
-        <californium-core-connector>2.0.0-M11</californium-core-connector>
-        <californium-core-scandium>2.0.0-M11</californium-core-scandium>
+        <californium-core>2.0.0-M5</californium-core>
+        <californium-core-connector>2.0.0-M5</californium-core-connector>
+        <californium-core-scandium>2.0.0-M5</californium-core-scandium>
         <adminui-version>2.1.0</adminui-version>
         <nacos-version>2.1.1.RELEASE</nacos-version>
     </properties>

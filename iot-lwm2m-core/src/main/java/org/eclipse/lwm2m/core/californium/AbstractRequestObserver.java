@@ -20,6 +20,17 @@ import org.eclipse.californium.core.coap.Request;
 import org.eclipse.californium.core.coap.Response;
 import org.eclipse.lwm2m.core.response.LwM2mResponse;
 
+/**
+ * 消息观察类，当消息发生变化时调用相应的方法
+ *
+ onResponse() 当收到响应时回调
+ onAcknowledgement() 当收到应答时回调
+ onReject() 当请求消息被拒绝时回调
+ onTimeout() 当客户端停止重传且仍然没有从对端收到任何消息时回调
+ onCancel() 当消息被取消时回调
+ *
+ * @param <T>
+ */
 public abstract class AbstractRequestObserver<T extends LwM2mResponse> extends MessageObserverAdapter {
     Request coapRequest;
 

@@ -51,7 +51,7 @@
 
 
     <properties>
-        <californium-core>2.0.0-M11</californium-core>
+        <californium-core>2.0.0-M5</californium-core>
         <logback-core>1.2.3</logback-core>
         <slf4j-api>1.7.25</slf4j-api>
         <google.code.gson>2.2.4</google.code.gson>

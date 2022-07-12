@@ -17,7 +17,7 @@
         <commons-cli>1.3.1</commons-cli>
         <minimal-json>0.9.5</minimal-json>
         <json-lib>2.4</json-lib>
-        <californium-core>2.0.0-M11</californium-core>
+        <californium-core>2.0.0-M5</californium-core>
         <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
         <spring.cloud>Greenwich.SR6</spring.cloud>
         <spring-boot-starter-redis-version>1.3.3.RELEASE</spring-boot-starter-redis-version>
