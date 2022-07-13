@@ -35,16 +35,17 @@ public class AuthResource extends VariableBase {
         if (registration != null) {
             try {
                 AuthServer authServer = new AuthServer();
-
                 // call api
                 ResultCode resultCode = authServer.getKey(auth);
-
                 LwM2mNode uaNode = gson.fromJson(resultCode.getJson(), LwM2mNode.class);
                 WriteRequest uaRequest = new WriteRequest(WriteRequest.Mode.REPLACE, contentFormat, resultCode.getId(), uaNode);
                 WriteResponse uaResponse = lwM2mServer.send(registration, uaRequest, TIMEOUT);
+                logger.error("000000000000");
+                logger.info("000000000000");
+                logger.debug("000000000000");
+                logger.warn("000000000000");
                 if (uaResponse != null && Codes.WRITE_RESULT.equals(uaResponse.getCode().toString())) {
                     logger.info("Write ua url success" + LOGINFO, mid, productId, resultCode.getJson());
-                    System.out.println("000000000000");
                 } else {
                     logger.info("Write ua url failure" + LOGINFO, mid, productId, resultCode.getJson());
                     System.out.println("1111111111111");

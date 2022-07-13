@@ -30,26 +30,26 @@
             <charset>UTF-8</charset> <!-- 此处设置字符集 -->
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-        <level>WARN</level>
+        <level>debug</level>
         <onMatch>ACCEPT</onMatch>
         <onMismatch>DENY</onMismatch>
         </filter>
 
     </appender>
 
-    <logger name="org.springframework" level="WARN" additivity="true"></logger>
+    <logger name="org.springframework" level="debug" additivity="true"></logger>
     <logger name="org.hibernate" level="WARN" additivity="true"></logger>
     <logger name="ch.qos.logback" level="WARN" additivity="true"></logger>
     <logger name="com.netflix.discovery" level="WARN" additivity="true"></logger>
     <logger name="org.apache" level="WARN" additivity="true"></logger>
     <logger name="com.netflix" level="ERROR" additivity="true"></logger>
-    <logger name="com.abupdate.iot.lwm2m.redis" level="ERROR" additivity="true"></logger>
+    <logger name="com.abupdate.iot.lwm2m" level="debug" additivity="true"></logger>
 
     <!--<root level="debug">-->
     <!--<appender-ref ref ="console"/>-->
     <!--<appender-ref ref ="file"/>-->
     <!--</root>-->
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="console"/>
         <appender-ref ref ="file"/>
     </root>

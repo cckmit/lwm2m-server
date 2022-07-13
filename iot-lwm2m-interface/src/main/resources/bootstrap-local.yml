@@ -1,5 +1,11 @@
 spring:
 
+#logging:
+#  path: log/
+#  level:
+#    com.abupdate.iot.lwm2m: debug
+logging:
+  config: classpath:logback-local.xml
 
 url:
   downloadUurl : coap://127.0.0.1/rd/downloads

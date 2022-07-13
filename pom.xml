@@ -11,6 +11,7 @@
         <module>iot-lwm2m-core</module>
         <module>iot-lwm2m-interface</module>
         <module>iot-lwm2m-download</module>
+        <module>iot-lwm2m-download</module>
     </modules>
 
     <packaging>pom</packaging>
