@@ -162,9 +162,11 @@ public class UDPConnector implements Connector {
 			senderThreads.add(new Sender("UDP-Sender-"+localAddr+"["+i+"]"));
 		}
 
+		//开启接收消息线程
 		for (Thread t:receiverThreads) {
 			t.start();
 		}
+		//开启发送消息线程
 		for (Thread t:senderThreads) {
 			t.start();
 		}
@@ -284,7 +286,8 @@ public class UDPConnector implements Connector {
 		 */
 		protected abstract void work() throws Exception;
 	}
-	
+
+	//接收消息线程
 	private class Receiver extends NetworkStageThread {
 		
 		private DatagramPacket datagram;
@@ -299,6 +302,7 @@ public class UDPConnector implements Connector {
 		@Override
 		protected void work() throws IOException {
 			datagram.setLength(size);
+			//socket接收数据
 			socket.receive(datagram);
 			if (LOGGER.isLoggable(Level.FINER)) {
 				LOGGER.log(Level.FINER, "UDPConnector ({0}) received {1} bytes from {2}:{3}",
@@ -312,7 +316,8 @@ public class UDPConnector implements Connector {
 		}
 		
 	}
-	
+
+	//发送消息线程
 	private class Sender extends NetworkStageThread {
 
 		private DatagramPacket datagram;

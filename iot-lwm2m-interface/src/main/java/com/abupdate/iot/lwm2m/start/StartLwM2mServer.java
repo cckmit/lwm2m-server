@@ -246,8 +246,8 @@ public class StartLwM2mServer {
         LwM2mModelProvider modelProvider = new StaticModelProvider(models);
         builder.setObjectModelProvider(modelProvider);
 
-        //创建启动lwm2m服务端
         LwM2mServer server = builder.build();
+        //入口，创建启动lwm2m服务端
         server.start();
     }
 

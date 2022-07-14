@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2015, 2016 Institute for Pervasive Computing, ETH Zurich and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * and Eclipse Distribution License v1.0 which accompany this distribution.
- * 
+ *
  * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
  * and the Eclipse Distribution License is available at
  *    http://www.eclipse.org/org/documents/edl-v10.html.
- * 
+ *
  * Contributors:
  *    Matthias Kovatsch - creator and main architect
  *    Martin Lanter - architect and re-implementation
@@ -111,13 +111,13 @@ import org.eclipse.californium.elements.util.DaemonThreadFactory;
  * matcher remembers outgoing messages and matches incoming responses, acks and
  * rsts to them. MessageInterceptors receive every incoming and outgoing
  * message. By default, only one interceptor is used to log messages.
- * 
+ *
  * <pre>
  * +-----------------------+
  * |   {@link MessageDeliverer}    +--&gt; (Resource Tree)
  * +-------------A---------+
  *               |
- *             * A            
+ *             * A
  * +-Endpoint--+-A---------+
  * |           v A         |
  * |           v A         |
@@ -136,7 +136,7 @@ import org.eclipse.californium.elements.util.DaemonThreadFactory;
  * |          v A          |
  * |        {@link Matcher}        |
  * |          v A          |
- * |   {@link MessageInterceptor}  |  
+ * |   {@link MessageInterceptor}  |
  * |          v A          |
  * |          v A          |
  * | +--------v-+--------+ |
@@ -151,23 +151,23 @@ import org.eclipse.californium.elements.util.DaemonThreadFactory;
  * execute tasks, e.g., when a request arrives.
  */
 public class CoapEndpoint implements Endpoint {
-	
+
 	/** the logger. */
 	private static final Logger LOGGER = Logger.getLogger(CoapEndpoint.class.getCanonicalName());
-	
+
 	/** The stack of layers that make up the CoAP protocol */
 	private final CoapStack coapstack;
-	
+
 	/** The connector over which the endpoint connects to the network */
 	private final Connector connector;
-	
+
 	private final String scheme;
-	
+
 	private final String secureScheme;
-	
+
 	/** The configuration of this endpoint */
 	private final NetworkConfig config;
-	
+
 	/** The matcher which matches incoming responses, akcs and rsts an exchange */
 	private final Matcher matcher;
 
@@ -179,13 +179,13 @@ public class CoapEndpoint implements Endpoint {
 
 	/** The executor to run tasks for this endpoint and its layers */
 	private ScheduledExecutorService executor;
-	
+
 	/** Indicates if the endpoint has been started */
 	private boolean started;
-	
+
 	/** The list of endpoint observers (has nothing to do with CoAP observe relations) */
 	private List<EndpointObserver> observers = new CopyOnWriteArrayList<>();
-	
+
 	/** The list of interceptors */
 	private List<MessageInterceptor> interceptors = new CopyOnWriteArrayList<>();
 
@@ -225,7 +225,7 @@ public class CoapEndpoint implements Endpoint {
 	 * Creates a new <em>coap</em> endpoint for a configuration.
 	 * <p>
 	 * The endpoint will bind to all network interfaces and listen on an ephemeral port.
-	 * 
+	 *
 	 * @param config The configuration values to use.
 	 */
 	public CoapEndpoint(final NetworkConfig config) {
@@ -270,7 +270,7 @@ public class CoapEndpoint implements Endpoint {
 	 * <p>
 	 * The endpoint will support the connector's implemented scheme and will bind to
 	 * the IP address and port the connector is configured for.
-	 * 
+	 *
 	 * @param connector The connector to use.
 	 * @param config The configuration values to use.
 	 */
@@ -280,7 +280,7 @@ public class CoapEndpoint implements Endpoint {
 
 	/**
 	 * Creates a new <em>coap</em> endpoint for a configuration and observation store.
-	 * 
+	 *
 	 * @param address The IP address and port to bind to.
 	 * @param config The configuration values to use.
 	 * @param store The store to use for keeping track of observations initiated by this
@@ -415,6 +415,7 @@ public class CoapEndpoint implements Endpoint {
 
 			started = true;
 			matcher.start();
+			//开启所有连接
 			connector.start();
 			for (EndpointObserver obs : observers) {
 				obs.started(this);
@@ -563,10 +564,10 @@ public class CoapEndpoint implements Endpoint {
 	/**
 	 * Sets a processor for incoming requests and responses to.
 	 * <p>
-	 * Incoming responses that represent notifications for observations 
+	 * Incoming responses that represent notifications for observations
 	 * will also be forwarded to all notification listeners.
 	 * </p>
-	 * 
+	 *
 	 *  @param deliverer the processor to deliver messages to.
 	 *  @throws NullPointerException if the given deliverer is {@code null}
 	 */
@@ -589,7 +590,7 @@ public class CoapEndpoint implements Endpoint {
 	public NetworkConfig getConfig() {
 		return config;
 	}
-	
+
 	public Connector getConnector() {
 		return connector;
 	}
@@ -619,7 +620,7 @@ public class CoapEndpoint implements Endpoint {
 			assertMessageHasDestinationAddress(request);
 			matcher.sendRequest(exchange, request);
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
@@ -655,7 +656,7 @@ public class CoapEndpoint implements Endpoint {
 			assertMessageHasDestinationAddress(response);
 			matcher.sendResponse(exchange, response);
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
@@ -686,7 +687,7 @@ public class CoapEndpoint implements Endpoint {
 			assertMessageHasDestinationAddress(message);
 			matcher.sendEmptyMessage(exchange, message);
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
@@ -762,15 +763,15 @@ public class CoapEndpoint implements Endpoint {
 				msg.setSourcePort(raw.getPort());
 
 				if (CoAP.isRequest(msg.getRawCode())) {
-
+                    //处理请求消息
 					receiveRequest((Request) msg, raw);
 
 				} else if (CoAP.isResponse(msg.getRawCode())) {
-
+                    //处理响应消息
 					receiveResponse((Response) msg, raw);
 
 				} else if (CoAP.isEmptyMessage(msg.getRawCode())) {
-
+                    //处理空消息
 					receiveEmptyMessage((EmptyMessage) msg, raw);
 
 				} else {
@@ -820,20 +821,28 @@ public class CoapEndpoint implements Endpoint {
 			request.setScheme(raw.isSecure() ? secureScheme : scheme);
 			request.setSenderIdentity(raw.getSenderIdentity());
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
 			 */
+            /**
+             * 消息拦截器接收请求
+             * 框架本身并没有提供MessageInterceptor接口的任何实现类，我们可以根据业务
+             * 需求实现该接口，并通过CoapEndpoint.addInterceptor(MessageInterceptor interceptor)方法
+             * 添加具体的实现类。
+             */
 			for (MessageInterceptor interceptor:interceptors) {
 				interceptor.receiveRequest(request);
 			}
 
 			// MessageInterceptor might have canceled
 			if (!request.isCanceled()) {
+                // 匹配器接收请求，填充Exchange对象并返回
 				Exchange exchange = matcher.receiveRequest(request);
 				if (exchange != null) {
 					exchange.setEndpoint(CoapEndpoint.this);
+                    // Coap协议栈接收请求
 					coapstack.receiveRequest(exchange, request);
 				}
 			}
@@ -841,7 +850,7 @@ public class CoapEndpoint implements Endpoint {
 
 		private void receiveResponse(final Response response, final RawData raw) {
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
@@ -866,7 +875,7 @@ public class CoapEndpoint implements Endpoint {
 
 		private void receiveEmptyMessage(final EmptyMessage message, final RawData raw) {
 
-			/* 
+			/*
 			 * Logging here causes significant performance loss.
 			 * If necessary, add an interceptor that logs the messages,
 			 * e.g., the MessageTracer.
@@ -905,7 +914,7 @@ public class CoapEndpoint implements Endpoint {
 
 		/**
 		 * Creates a new message callback.
-		 * 
+		 *
 		 * @param message related send message
 		 * @throws NullPointerException if message is {@code null}
 		 */
@@ -915,10 +924,10 @@ public class CoapEndpoint implements Endpoint {
 			}
 			this.message = message;
 		}
-		
+
 		@Override
 		public void onContextEstablished(CorrelationContext context) {
-			
+
 		}
 
 		@Override
@@ -933,7 +942,7 @@ public class CoapEndpoint implements Endpoint {
 	}
 
 	/**
-	 * Message callback for request. 
+	 * Message callback for request.
 	 * Additional calls {@link Exchange#setCorrelationContext(CorrelationContext).
 	 */
 	private class RequestCallback extends MessageCallbackForwarder {
