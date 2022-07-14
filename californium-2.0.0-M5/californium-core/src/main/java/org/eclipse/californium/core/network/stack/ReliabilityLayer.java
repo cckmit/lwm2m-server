@@ -193,6 +193,7 @@ public class ReliabilityLayer extends AbstractLayer {
 	public void receiveRequest(final Exchange exchange, final Request request) {
 
 		if (request.isDuplicate()) {
+			//如果是重复消息
 			// Request is a duplicate, so resend ACK, RST or response
 			if (exchange.getCurrentResponse() != null) {
 				LOGGER.fine("Respond with the current response to the duplicate request");
@@ -217,8 +218,10 @@ public class ReliabilityLayer extends AbstractLayer {
 			}
 
 		} else {
+			//如果不是重复消息
 			// Request is not a duplicate
 			exchange.setCurrentRequest(request);
+			//传递给BlockwiseLayer
 			upper().receiveRequest(exchange, request);
 		}
 	}

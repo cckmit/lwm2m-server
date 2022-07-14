@@ -51,8 +51,11 @@ public abstract class BaseCoapStack implements CoapStack {
 	private MessageDeliverer deliverer;
 
 	protected BaseCoapStack(final Outbox outbox) {
+		//初始化栈顶
 		this.top = new StackTopAdapter();
+		// 初始化栈底
 		this.bottom = new StackBottomAdapter();
+		// 初始化出口
 		this.outbox = outbox;
 	}
 
@@ -94,6 +97,7 @@ public abstract class BaseCoapStack implements CoapStack {
 	@Override
 	public void receiveRequest(final Exchange exchange, final Request request) {
 		// delegate to bottom
+		//委派给StackBottomAdapter处理
 		bottom.receiveRequest(exchange, request);
 	}
 
