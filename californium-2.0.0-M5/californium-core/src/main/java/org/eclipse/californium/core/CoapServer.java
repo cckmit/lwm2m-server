@@ -212,7 +212,7 @@ public class CoapServer implements ServerInterface {
 		int started = 0;
 		for (Endpoint ep : endpoints) {
 			try {
-				//启动所有Endpoint
+				//服务启动-->7,启动所有Endpoint
 				ep.start();
 				// only reached on success
 				++started;

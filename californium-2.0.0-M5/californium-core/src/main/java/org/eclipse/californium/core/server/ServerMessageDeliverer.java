@@ -82,6 +82,7 @@ public final class ServerMessageDeliverer implements MessageDeliverer {
 						resource.handleRequest(exchange);
 					} });
 			} else {
+				//接收消息-->10，将请求交给CoapResource处理
 				resource.handleRequest(exchange);
 			}
 		} else {

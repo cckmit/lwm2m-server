@@ -376,7 +376,7 @@ public class LeshanServerBuilder {
         if (securedEndpoint == null && unsecuredEndpoint == null) {
             throw new IllegalStateException("All CoAP enpoints are deactivated, at least one endpoint should be activated");
         }
-
+        //服务启动-->4
         return new LwM2mServer(unsecuredEndpoint, securedEndpoint, registrationStore, securityStore, authorizer, modelProvider, encoder, decoder, coapConfig);
     }
 }

@@ -219,9 +219,8 @@ public class ReliabilityLayer extends AbstractLayer {
 
 		} else {
 			//如果不是重复消息
-			// Request is not a duplicate
 			exchange.setCurrentRequest(request);
-			//传递给BlockwiseLayer
+			//接收消息-->7，传递给BlockwiseLayer
 			upper().receiveRequest(exchange, request);
 		}
 	}

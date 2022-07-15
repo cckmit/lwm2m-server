@@ -169,6 +169,7 @@ public class LwM2mServer {
             ((Startable) securityStore).start();
         }
 
+        //服务启动-->6
         // Start server
         coapServer.start();
         if (LOG.isInfoEnabled()) {

@@ -213,6 +213,7 @@ public  class CoapResource implements Resource {
 		Code code = exchange.getRequest().getCode();
 		switch (code) {
 			case GET:	handleGET(new CoapExchange(exchange, this)); break;
+			//接收消息-->11，将请求交给EntranceResource处理
 			case POST:	handlePOST(new CoapExchange(exchange, this)); break;
 			case PUT:	handlePUT(new CoapExchange(exchange, this)); break;
 			case DELETE: handleDELETE(new CoapExchange(exchange, this)); break;

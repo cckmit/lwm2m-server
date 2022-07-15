@@ -97,7 +97,7 @@ public abstract class BaseCoapStack implements CoapStack {
 	@Override
 	public void receiveRequest(final Exchange exchange, final Request request) {
 		// delegate to bottom
-		//委派给StackBottomAdapter处理
+		//接收消息-->5，委派给StackBottomAdapter处理
 		bottom.receiveRequest(exchange, request);
 	}
 
@@ -163,6 +163,7 @@ public abstract class BaseCoapStack implements CoapStack {
 				exchange.setRequest(request);
 			}
 			if (hasDeliverer()) {
+				//接收消息-->9，将请求传递给消息分发器ServerMessageDeliverer
 				deliverer.deliverRequest(exchange);
 			} else {
 				LOGGER.severe("Top of CoAP stack has no deliverer to deliver request");

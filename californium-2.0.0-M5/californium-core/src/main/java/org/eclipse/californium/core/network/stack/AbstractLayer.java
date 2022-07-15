@@ -77,7 +77,7 @@ public abstract class AbstractLayer implements Layer {
 
 	@Override
 	public void receiveRequest(final Exchange exchange, final Request request) {
-		//委派给ReliabilityLayer处理
+		//接收消息-->6，委派给ReliabilityLayer处理
 		upperLayer.receiveRequest(exchange, request);
 	}
 

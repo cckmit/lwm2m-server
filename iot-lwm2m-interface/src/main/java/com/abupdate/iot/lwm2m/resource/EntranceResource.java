@@ -71,6 +71,7 @@ public class EntranceResource extends CoapResource {
 
     @Override
     public void handlePOST(CoapExchange exchange) {
+        //接收消息-->12，将请求交给自定义的Resource处理
         Request request = exchange.advanced().getRequest();
 
         logger.info("Requset = {}, IP = {}", request, exchange.getSourceAddress());
@@ -90,11 +91,9 @@ public class EntranceResource extends CoapResource {
 
         uriQuery.setProductId(Long.parseLong(uriQuery.getSms()));
 
-
         String mid = uriQuery.getEp();
         Long productId = uriQuery.getProductId();
 
-        // The LWM2M spec (section 8.2) mandates the usage of confirmable messages
         if (!Type.CON.equals(request.getType())) {
             logger.info("Type" + LOGINFO, mid, productId, ResponseCode.BAD_REQUEST);
             exchange.respond(ResponseCode.BAD_REQUEST);
@@ -108,22 +107,14 @@ public class EntranceResource extends CoapResource {
             return;
         }
 
-//        String key="_"+productId;
-//        Registration registration = registrationHandler.getByEndpoint(mid, key);
-//        if (registration!=null){
-//            registrationHandler.update()
-//        }
-
-
         if (uriQuery.getEp() == null || "".equals(uriQuery.getEp())) {
             logger.info("Device name is null" + LOGINFO, mid, productId, ResponseCode.BAD_REQUEST);
             exchange.respond(ResponseCode.BAD_REQUEST, "Device name is null");
             return;
         }
 
-
         if (StringUtils.isEmpty(uriQuery.getOp())) {
-            /*TODO Register*/
+            //回复消息-->1，处理注册信息
             registerResource(uriQuery, exchange, lwM2mServer, registrationHandler);
             exchange.respond(ResponseCode.CREATED);
             return;

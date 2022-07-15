@@ -126,6 +126,7 @@ public class StartLwM2mServer {
 
         try {
             logger.info("coap server start" + localAddress + ":" + localPort);
+            //服务启动-->2
             createAndStartServer(localAddress, localPort, redisUrl, secureLocalAddress, secureLocalPort, keyStorePath, keyStoreType, keyStorePass, keyStoreAlias, keyStoreAliasPass);
         } catch (Exception e) {
             logger.error("Jetty stopped with unexpected error ...", e);
@@ -245,9 +246,9 @@ public class StartLwM2mServer {
         List<ObjectModel> models = ObjectLoader.loadDefault();
         LwM2mModelProvider modelProvider = new StaticModelProvider(models);
         builder.setObjectModelProvider(modelProvider);
-
+        //服务启动-->3
         LwM2mServer server = builder.build();
-        //入口，创建启动lwm2m服务端
+        //服务启动-->5
         server.start();
     }
 

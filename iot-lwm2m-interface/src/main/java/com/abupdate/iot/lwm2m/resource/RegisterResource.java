@@ -41,6 +41,7 @@ public class RegisterResource extends VariableBase {
         List<String> uri = exchange.getRequestOptions().getUriPath();
 
         if (uri.size() == 1) {
+            //回复消息-->2，处理注册信息
             handleRegister(uriQuery, exchange, request, registrationHandler);
         } else if (uri.size() == 2) {
             handleUpdate(uriQuery, exchange, request, uri.get(1), registrationHandler);
@@ -90,8 +91,8 @@ public class RegisterResource extends VariableBase {
         // -------------------------------
         if (response.getCode() == org.eclipse.lwm2m.ResponseCode.CREATED) {
             exchange.setLocationPath(RESOURCE_NAME + "/" + response.getRegistrationID());
+            //回复消息-->3，将消息交给CoapExchange处理
             exchange.respond(ResponseCode.CREATED);
-
             logger.info("Register LwM2m success" + LOGINFO, endpoint, productId, ResponseCode.CONTENT);
         } else {
             exchange.respond(fromLwM2mCode(response.getCode()), response.getErrorMessage());

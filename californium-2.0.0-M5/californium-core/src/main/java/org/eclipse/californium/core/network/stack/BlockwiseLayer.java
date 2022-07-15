@@ -308,13 +308,14 @@ public class BlockwiseLayer extends AbstractLayer {
 			} else {
 
 				exchange.setRequest(request);
-				//传递给StackTopAdapter
+				//接收消息-->8，传递给StackTopAdapter
 				upper().receiveRequest(exchange, request);
 			}
 
 		} else {
 
 			exchange.setRequest(request);
+
 			upper().receiveRequest(exchange, request);
 		}
 	}

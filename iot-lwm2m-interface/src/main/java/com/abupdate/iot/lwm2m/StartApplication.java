@@ -47,10 +47,7 @@ public class StartApplication extends SpringBootServletInitializer {
 
         logger.info("config -> download domain = {}", downloadUrl);
         DOWNLOADURL = downloadUrl;
-        /**
-         * Start LwM2m Server
-         */
-
+        //服务启动-->1
         startLwM2mServer(redisUrl);
     }
 
