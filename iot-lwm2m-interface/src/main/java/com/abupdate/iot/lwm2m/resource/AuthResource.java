@@ -40,10 +40,6 @@ public class AuthResource extends VariableBase {
                 LwM2mNode uaNode = gson.fromJson(resultCode.getJson(), LwM2mNode.class);
                 WriteRequest uaRequest = new WriteRequest(WriteRequest.Mode.REPLACE, contentFormat, resultCode.getId(), uaNode);
                 WriteResponse uaResponse = lwM2mServer.send(registration, uaRequest, TIMEOUT);
-                logger.error("000000000000");
-                logger.info("000000000000");
-                logger.debug("000000000000");
-                logger.warn("000000000000");
                 if (uaResponse != null && Codes.WRITE_RESULT.equals(uaResponse.getCode().toString())) {
                     logger.info("Write ua url success" + LOGINFO, mid, productId, resultCode.getJson());
                 } else {

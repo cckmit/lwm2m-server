@@ -127,6 +127,7 @@ public class ObserveLayer extends AbstractLayer {
 			}
 
 		} // else no observe was requested or the resource does not allow it
+		//回复消息-->9，将消息交给BlockwiseLayer处理
 		lower().sendResponse(exchange, response);
 	}
 

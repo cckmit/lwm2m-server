@@ -67,6 +67,7 @@ public abstract class AbstractLayer implements Layer {
 
 	@Override
 	public void sendResponse(final Exchange exchange, final Response response) {
+		//回复消息-->8，将消息交给ObserveLayer处理
 		lowerLayer.sendResponse(exchange, response);
 	}
 

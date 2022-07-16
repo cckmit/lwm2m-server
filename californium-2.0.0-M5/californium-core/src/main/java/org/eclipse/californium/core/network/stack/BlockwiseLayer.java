@@ -534,6 +534,7 @@ public class BlockwiseLayer extends AbstractLayer {
 		}
 
 		exchange.setCurrentResponse(responseToSend);
+		//回复消息-->10，将消息交给ReliabilityLayer处理
 		lower().sendResponse(exchange, responseToSend);
 	}
 

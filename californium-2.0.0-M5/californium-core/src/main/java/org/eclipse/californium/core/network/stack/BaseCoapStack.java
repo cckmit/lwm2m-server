@@ -85,6 +85,7 @@ public abstract class BaseCoapStack implements CoapStack {
 	@Override
 	public void sendResponse(final Exchange exchange, final Response response) {
 		// delegate to top
+		//回复消息-->7，将消息交给StackTopAdapter处理
 		top.sendResponse(exchange, response);
 	}
 
@@ -153,6 +154,7 @@ public abstract class BaseCoapStack implements CoapStack {
 		@Override
 		public void sendResponse(final Exchange exchange, final Response response) {
 			exchange.setResponse(response);
+			//回复消息-->8，将消息交给ObserveLayer处理
 			lower().sendResponse(exchange, response);
 		}
 
@@ -197,6 +199,7 @@ public abstract class BaseCoapStack implements CoapStack {
 
 		@Override
 		public void sendResponse(Exchange exchange, Response response) {
+			//回复消息-->12，将消息交给OutboxImpl处理
 			outbox.sendResponse(exchange, response);
 		}
 

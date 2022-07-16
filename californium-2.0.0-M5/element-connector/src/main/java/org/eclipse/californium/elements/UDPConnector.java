@@ -229,6 +229,7 @@ public class UDPConnector implements Connector {
 		if (msg == null) {
 			throw new NullPointerException("Message must not be null");
 		} else {
+			//回复消息-->14，将消息放入队列
 			outgoing.add(msg);
 		}
 	}
@@ -313,6 +314,7 @@ public class UDPConnector implements Connector {
 			RawData msg = new RawData(bytes, datagram.getAddress(), datagram.getPort());
 			//接收消息-->1
 			receiver.receiveData(msg);
+			System.out.println("成功 接收到 消息");
 		}
 		
 	}
@@ -351,7 +353,9 @@ public class UDPConnector implements Connector {
 					LOGGER.log(Level.FINER, "UDPConnector ({0}) sends {1} bytes to {2}:{3}",
 							new Object[] { getUri(), datagram.getLength(), datagram.getAddress(), datagram.getPort() });
 				}
+				//回复消息-->15，从队列中取出消息并发送
 				socket.send(datagram);
+				System.out.println("成功 发送 消息");
 				raw.onSent();
 			} catch (IOException ex) {
 				raw.onError(ex);

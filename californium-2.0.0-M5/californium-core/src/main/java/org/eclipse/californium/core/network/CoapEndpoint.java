@@ -576,6 +576,7 @@ public class CoapEndpoint implements Endpoint {
             });
         } else {
             // use same thread to save switching overhead
+            //回复消息-->6，将消息交给BaseCoapStack处理
             coapstack.sendResponse(exchange, response);
         }
     }
@@ -680,6 +681,7 @@ public class CoapEndpoint implements Endpoint {
         public void sendResponse(Exchange exchange, Response response) {
 
             assertMessageHasDestinationAddress(response);
+            // 匹配器发送响应
             matcher.sendResponse(exchange, response);
 
             /*
@@ -687,6 +689,7 @@ public class CoapEndpoint implements Endpoint {
              * If necessary, add an interceptor that logs the messages,
              * e.g., the MessageTracer.
              */
+            // 消息拦截器发送响应
             for (MessageInterceptor interceptor : interceptors) {
                 interceptor.sendResponse(response);
             }
@@ -702,6 +705,7 @@ public class CoapEndpoint implements Endpoint {
                 if (null != exchange) {
                     correlationContext = exchange.getCorrelationContext();
                 }
+                //回复消息-->13，将消息交给UDPConnector处理
                 connector.send(serializer.serializeResponse(response, correlationContext, new MessageCallbackForwarder(response)));
             }
         }

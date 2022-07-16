@@ -148,6 +148,7 @@ public class ReliabilityLayer extends AbstractLayer {
 				}
 			});
 		}
+		//回复消息-->11，将消息交给StackBottomAdapter处理
 		lower().sendResponse(exchange, response);
 	}
 

@@ -242,6 +242,7 @@ public class Exchange {
 		response.setDestination(request.getSource());
 		response.setDestinationPort(request.getSourcePort());
 		setResponse(response);
+		//回复消息-->5，将消息交给CoapEndpoint处理
 		endpoint.sendResponse(this, response);
 	}
 
