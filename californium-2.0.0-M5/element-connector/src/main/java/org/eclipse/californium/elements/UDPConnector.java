@@ -56,7 +56,6 @@ import java.util.logging.Logger;
  * and {@link #setSenderThreadCount(int)} before the connector is started.
  */
 public class UDPConnector implements Connector {
-
 	private static final String SUPPORTED_SCHEME = "coap";
 
 	public static final Logger LOGGER = Logger.getLogger(UDPConnector.class.getName());
@@ -314,7 +313,8 @@ public class UDPConnector implements Connector {
 			RawData msg = new RawData(bytes, datagram.getAddress(), datagram.getPort());
 			//接收消息-->1
 			receiver.receiveData(msg);
-			System.out.println("成功 接收到 消息");
+			String s = new String(msg.bytes);
+			LOGGER.log(Level.INFO,"成功 接收到 消息");
 		}
 		
 	}
