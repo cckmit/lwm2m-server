@@ -643,7 +643,7 @@ public class CoapEndpoint implements Endpoint {
 
         @Override
         public void sendRequest(final Exchange exchange, final Request request) {
-
+            LOGGER.log(Level.OFF,"发送请求 : " + request);
             assertMessageHasDestinationAddress(request);
             matcher.sendRequest(exchange, request);
 
@@ -679,7 +679,7 @@ public class CoapEndpoint implements Endpoint {
 
         @Override
         public void sendResponse(Exchange exchange, Response response) {
-
+            LOGGER.log(Level.OFF,"发送响应 : " + response);
             assertMessageHasDestinationAddress(response);
             // 匹配器发送响应
             matcher.sendResponse(exchange, response);
@@ -712,7 +712,7 @@ public class CoapEndpoint implements Endpoint {
 
         @Override
         public void sendEmptyMessage(Exchange exchange, EmptyMessage message) {
-
+            LOGGER.log(Level.OFF,"发送空消息 : " + message);
             assertMessageHasDestinationAddress(message);
             matcher.sendEmptyMessage(exchange, message);
 
@@ -792,15 +792,18 @@ public class CoapEndpoint implements Endpoint {
                 msg.setSourcePort(raw.getPort());
                 if (CoAP.isRequest(msg.getRawCode())) {
                     //接收消息-->3，处理请求消息
+                    LOGGER.log(Level.OFF,"接收到请求消息 : " + msg);
                     receiveRequest((Request) msg, raw);
                 } else if (CoAP.isResponse(msg.getRawCode())) {
                     //接收消息-->3，处理响应消息
+                    LOGGER.log(Level.OFF,"接收到响应消息 : " + msg);
                     receiveResponse((Response) msg, raw);
                 } else if (CoAP.isEmptyMessage(msg.getRawCode())) {
                     //接收消息-->3，处理空消息
+                    LOGGER.log(Level.OFF,"接收到空消息 : " + msg);
                     receiveEmptyMessage((EmptyMessage) msg, raw);
                 } else {
-                    LOGGER.log(Level.FINER, "Silently ignoring non-CoAP message from {0}", raw.getInetSocketAddress());
+                    LOGGER.log(Level.OFF, "Silently ignoring non-CoAP message from {0}", raw.getInetSocketAddress());
                 }
 
             } catch (CoAPMessageFormatException e) {
